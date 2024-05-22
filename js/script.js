@@ -14,44 +14,17 @@ function division (a,b){
     return a / b
 }
 
-let primerNum;
-let operador;
-let segundoNum;
-
 function operar(operador, num1, num2){
     if (operador == "+") {
         return suma(num1,num2)
     } else if (operador == "-"){
         return resta(num1, num2)
-    } else if (operador == "*"){
+    } else if (operador == "x"){
         return multiplicacion(num1, num2)
     } else if (operador == "/"){
         return division(num1, num2)
     };
 }
-
-const btnUno = document.querySelector(".num1");
-btnUno.addEventListener("click", ()=>{
-    const num = btnUno.textContent;
-    const resultado = document.querySelector(".resultado");
-    resultado.textContent += num;
-});
-
-
-let contSuma = false;
-const btnSuma = document.querySelector(".operadorSuma");
-btnSuma.addEventListener("click", () => {
-    const resultado = document.querySelector(".resultado");
-    const operacion = document.querySelector(".operacion");
-    if (contSuma == false){
-        operacion.textContent += `${resultado.textContent} + `;
-        resultado.textContent = "";
-        contSuma = true;
-    } else {
-        operacion.textContent = `${resultado.textContent} + `;
-        resultado.textContent = "";
-    }
-});
 
 const btnIgual = document.querySelector(".operadorIgual");
 btnIgual.addEventListener("click", () => {
@@ -75,5 +48,56 @@ btnLimpiar.addEventListener("click", () => {
     operacion.textContent = "";
     contSuma = false;
 });
+
+
+// Tomar todas las querys de las clases boton y operadores para añadirles un listener con el evento click
+// BOTONES NUMEROS
+const botones = document.querySelectorAll(".num");
+const arrayBotones = Array.from(botones);
+
+for (let index = 0; index < arrayBotones.length; index++) {
+    const btnNumero = arrayBotones[index];
+    btnNumero.addEventListener("click", () => {
+        const num = btnNumero.textContent;
+        const resultado = document.querySelector(".resultado");
+        resultado.textContent += num;
+    });
+}
+
+// BOTONES OPERADORES
+
+const operadores = document.querySelectorAll(".operador");
+const arrayOperadores = Array.from(operadores);
+
+let contOperador = false;
+
+for (let index = 0; index < arrayOperadores.length; index++) {
+    const btnOperador = arrayOperadores[index];
+    btnOperador.addEventListener("click", () => {
+        const resultado = document.querySelector(".resultado");
+        const operacion = document.querySelector(".operacion");
+        if (contOperador == false){
+            operacion.textContent += `${resultado.textContent} ${btnOperador.textContent} `;
+            resultado.textContent = "";
+            contOperador = true;
+        } else {
+            operacion.textContent = `${resultado.textContent} ${btnOperador.textContent} `;
+            resultado.textContent = "";
+        }
+    });
+}
+
+// Arreglar el valor que se asigna al igual cuando se ha ingresado 1 o ningun valor.
+
+
+
+
+
+// Mostrar una alerta cuando se intente dividir por 0
+
+
+
+
+
 
 
