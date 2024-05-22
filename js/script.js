@@ -26,19 +26,44 @@ function operar(operador, num1, num2){
     };
 }
 
+const operaciones = "-+x/";
+
 const btnIgual = document.querySelector(".operadorIgual");
 btnIgual.addEventListener("click", () => {
     const resultado = document.querySelector(".resultado");
     const operacion = document.querySelector(".operacion");
-    if (resultado.textContent == "") {
-        operacion.textContent += 0;
-    } else {
+    const stringValidador = operacion.textContent.split("")
+                                     .filter((letra) => operaciones
+                                     .includes(letra))
+                                     .join("");
+    if (stringValidador != "") {
+        // Esta condicion evalua que cuando no haya ningun valor en resultado y operacion, el contenido de operacion sea 0
+        if (resultado.textContent === "" && operacion.textContent === "") {
+            resultado.textContent = 0;
+        } else if (operacion.textContent != "" && resultado.textContent == ""){
+            operacion.textContent += 0;
+        }
+        const arrayProv = operacion.textContent.split(" ");
+        if (arrayProv.length == 2) {
+            operacion.textContent = operar(arrayProv[1], arrayProv[0], arrayProv[2]);
+        }
         operacion.textContent += resultado.textContent;
+        const arrayOperadores = operacion.textContent.split(" ").map((valor) => {
+            if (valor == "") {
+                valor = "0";
+            }
+            return valor;
+        });
+        resultado.textContent = operar(arrayOperadores[1], +arrayOperadores[0], +arrayOperadores[2]);
     }
-    const arrayOperadores = operacion.textContent.split(" ");
-    console.log(arrayOperadores);
-    resultado.textContent = operar(arrayOperadores[1], +arrayOperadores[0], +arrayOperadores[2]);
 });
+
+// 1 + (operacion)
+//     (resultado)
+    
+// 1 + 0 (operacion)
+// 1     (resultado)
+
 
 const btnLimpiar = document.querySelector("input");
 btnLimpiar.addEventListener("click", () => {
@@ -78,18 +103,15 @@ for (let index = 0; index < arrayOperadores.length; index++) {
         const operacion = document.querySelector(".operacion");
         if (contOperador == false){
             operacion.textContent += `${resultado.textContent} ${btnOperador.textContent} `;
-            resultado.textContent = "";
             contOperador = true;
         } else {
             operacion.textContent = `${resultado.textContent} ${btnOperador.textContent} `;
-            resultado.textContent = "";
         }
+        resultado.textContent = "";
     });
 }
 
 // Arreglar el valor que se asigna al igual cuando se ha ingresado 1 o ningun valor.
-
-
 
 
 

@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 25px;
+}
+
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    background-color: antiquewhite;
+    flex-wrap: wrap;
+    align-items: center;
+    width: max-content;
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid white;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.btn, input{
+    padding: 20px;
+    border-radius: 50%;
+    border: 1px solid orange;
+    background-color: rgb(233, 127, 6);
+}
+
+.contenedor div{
+    display: flex;
+    gap: 15px;
+}
+
+.resultados > div{
+    background-color: white;
+}
+
+.resultados {
+    flex-direction: column;
+    width: 250px;
+    gap: 10px;
+    
+}
