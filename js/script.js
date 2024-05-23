@@ -15,62 +15,62 @@ function division (a,b){
 }
 
 function operar(operador, num1, num2){
+    num1 = +num1;
+    num2 = +num2;
     if (operador == "+") {
         return suma(num1,num2)
     } else if (operador == "-"){
         return resta(num1, num2)
-    } else if (operador == "x"){
+    } else if (operador == "*"){
         return multiplicacion(num1, num2)
     } else if (operador == "/"){
         return division(num1, num2)
     };
 }
 
-const operaciones = "-+x/";
+const operaciones = "-+*/";
 
 const btnIgual = document.querySelector(".operadorIgual");
 btnIgual.addEventListener("click", () => {
     const resultado = document.querySelector(".resultado");
-    const operacion = document.querySelector(".operacion");
-    const stringValidador = operacion.textContent.split("")
+    const ecuacion = document.querySelector(".ecuacion");
+    const stringValidador = ecuacion.textContent.split("")
                                      .filter((letra) => operaciones
                                      .includes(letra))
                                      .join("");
     if (stringValidador != "") {
         // Esta condicion evalua que cuando no haya ningun valor en resultado y operacion, el contenido de operacion sea 0
-        if (resultado.textContent === "" && operacion.textContent === "") {
+        if (resultado.textContent === "" && ecuacion.textContent === "") {
             resultado.textContent = 0;
-        } else if (operacion.textContent != "" && resultado.textContent == ""){
-            operacion.textContent += 0;
+        } else if (ecuacion.textContent != "" && resultado.textContent == ""){
+            resultado.textContent = 0;
         }
-        const arrayProv = operacion.textContent.split(" ");
-        if (arrayProv.length == 2) {
-            operacion.textContent = operar(arrayProv[1], arrayProv[0], arrayProv[2]);
+        const arrayProv = ecuacion.textContent.split(" ");
+        for(let index = 0; index < arrayProv.length; index++){
+            if (arrayProv[index] == "") {
+                arrayProv.splice(index,1);
+            }
         }
-        operacion.textContent += resultado.textContent;
-        const arrayOperadores = operacion.textContent.split(" ").map((valor) => {
+        if (arrayProv.length == 3) {
+            ecuacion.textContent = `${operar(arrayProv[1], arrayProv[0], arrayProv[2])} ${arrayProv[1]} `;
+        }
+        ecuacion.textContent += resultado.textContent;
+        const arrayOperadores = ecuacion.textContent.split(" ").map((valor) => {
             if (valor == "") {
                 valor = "0";
             }
             return valor;
         });
-        resultado.textContent = operar(arrayOperadores[1], +arrayOperadores[0], +arrayOperadores[2]);
+        resultado.textContent = operar(arrayOperadores[1], arrayOperadores[0], arrayOperadores[2]);
     }
 });
 
-// 1 + (operacion)
-//     (resultado)
-    
-// 1 + 0 (operacion)
-// 1     (resultado)
-
-
-const btnLimpiar = document.querySelector("input");
+const btnLimpiar = document.querySelector(".reset");
 btnLimpiar.addEventListener("click", () => {
     const resultado = document.querySelector(".resultado");
-    const operacion = document.querySelector(".operacion");
+    const ecuacion = document.querySelector(".ecuacion");
     resultado.textContent = "";
-    operacion.textContent = "";
+    ecuacion.textContent = "";
     contSuma = false;
 });
 
@@ -100,12 +100,12 @@ for (let index = 0; index < arrayOperadores.length; index++) {
     const btnOperador = arrayOperadores[index];
     btnOperador.addEventListener("click", () => {
         const resultado = document.querySelector(".resultado");
-        const operacion = document.querySelector(".operacion");
+        const ecuacion = document.querySelector(".ecuacion");
         if (contOperador == false){
-            operacion.textContent += `${resultado.textContent} ${btnOperador.textContent} `;
+            ecuacion.textContent += `${resultado.textContent} ${btnOperador.textContent} `;
             contOperador = true;
         } else {
-            operacion.textContent = `${resultado.textContent} ${btnOperador.textContent} `;
+            ecuacion.textContent = `${resultado.textContent} ${btnOperador.textContent} `;
         }
         resultado.textContent = "";
     });

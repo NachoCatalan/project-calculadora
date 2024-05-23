@@ -1,43 +1,112 @@
-* {
-    margin: 0;
-    padding: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 25px;
+*{
+    box-sizing: border-box;
 }
+.titulo{
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+    padding: 20px;
+    font-size: 25px;
+    font-weight: bold;
+}
+.copyright{
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
 
 .contenedor{
     display: flex;
-    flex-direction: column;
-    background-color: antiquewhite;
-    flex-wrap: wrap;
-    align-items: center;
-    width: max-content;
-    padding: 20px;
-    border-radius: 15px;
-    border: 2px solid white;
+    width: 400px;
+    background-color:rgb(126, 128, 233);
     margin: 0 auto;
-    gap: 20px;
-}
-
-.btn, input{
-    padding: 20px;
-    border-radius: 50%;
-    border: 1px solid orange;
-    background-color: rgb(233, 127, 6);
-}
-
-.contenedor div{
-    display: flex;
-    gap: 15px;
-}
-
-.resultados > div{
-    background-color: white;
-}
-
-.resultados {
     flex-direction: column;
-    width: 250px;
-    gap: 10px;
-    
+    border-radius: 10px;
+}
+
+body{
+    background-color: black;
+    padding: 0;
+    margin: 0;
+}
+
+.contenedor-resultados{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color:rgb(11, 9, 49);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.botones{
+    border-radius: 10px;
+    flex:4;
+    background-color:rgb(11, 9, 49);
+    padding: 10px;
+}
+
+.contenedor-resultados, .botones{
+    display: flex;
+    margin: 10px;
+}
+.resultado, .ecuacion{
+    flex: 1;
+    margin: 5px;
+    background-color:rgb(238, 238, 238);
+    min-height: 55px;
+}
+
+.ecuacion{
+    min-width: 50%;
+    align-self: end;
+    font-size: 20px;
+    max-width: fit-content;
+}
+.resultado{
+    font-size: 40px;
+    box-sizing: border-box;
+}
+.resultado, .ecuacion{
+    text-align: end;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.btn-numeros{
+    display: flex;
+    flex-direction: column;
+    flex:3;
+}
+
+.btn{
+    padding: 25px;
+    font-size: 28px;
+    margin: 5px;
+    background-color: rgb(226, 100, 10);
+    color: azure;
+    border-radius: 15px;
+    width: 75px;
+    box-sizing: border-box;
+    border: 1px solid white;
+}
+.fila{
+    flex: 1;
+}
+
+.btn-operadores{
+    flex: 1;
+}
+
+.operador{
+    background-color: brown;
+}
+
+.reset,.operadorIgual{
+    background-color:rgb(211, 65, 65);
 }
